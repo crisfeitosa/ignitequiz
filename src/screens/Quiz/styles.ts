@@ -19,7 +19,11 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: THEME.FONTS.BOLD,
     color: THEME.COLORS.GREY_100,
+    marginTop: 8,
     marginBottom: 8,
     textAlign: 'center',
+  },
+  header: {
+    width: '100%'
   }
 });
