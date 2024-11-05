@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { HouseLine } from 'phosphor-react-native';
-import Animated, { Layout, LinearTransition, SlideInDown, SlideInRight, SlideOutRight } from 'react-native-reanimated';
+import Animated, { LinearTransition, SlideInRight, SlideOutRight } from 'react-native-reanimated';
 
 import { Header } from '../../components/Header';
 import { HistoryCard, HistoryProps } from '../../components/HistoryCard';
