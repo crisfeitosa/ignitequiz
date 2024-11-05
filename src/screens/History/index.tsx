@@ -33,8 +33,8 @@ export function History() {
     fetchHistory();
   }
 
-  function handleRemove(id: string, index: number) {
-    swipeableRefs.current?.[index].close();
+  function handleRemove(id: string) {
+    swipeableRefs.current?.[Number(id)].close();
 
     Alert.alert(
       'Remover',
@@ -71,7 +71,7 @@ export function History() {
         showsVerticalScrollIndicator={false}
       >
         {
-          history.map((item, index) => (
+          history.map((item) => (
             <Animated.View
               key={item.id}
               entering={SlideInRight}
@@ -81,14 +81,14 @@ export function History() {
               <Swipeable
                 ref={(ref) => {
                   if(ref) {
-                    swipeableRefs.current.push(ref);
+                    swipeableRefs.current[Number(item.id)] = ref;
                   }
                 }}
                 overshootLeft={false}
                 containerStyle={styles.swipeableContainer}
                 renderLeftActions={() => (
                   <Pressable
-                    onPress={() => handleRemove(item.id, index)}
+                    onPress={() => handleRemove(item.id)}
                     style={styles.swipeableRemove}
                   >
                     <Trash size={32} color={THEME.COLORS.GREY_100} />
