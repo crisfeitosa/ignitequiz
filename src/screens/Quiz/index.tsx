@@ -25,6 +25,7 @@ import { QuizHeader } from '../../components/QuizHeader';
 import { ConfirmButton } from '../../components/ConfirmButton';
 import { OutlineButton } from '../../components/OutlineButton';
 import { ProgressBar } from '../../components/ProgressBar';
+import { OverlayFeedback } from '../../components/OverlayFeedback';
 import { THEME } from '../../styles/theme';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
@@ -208,6 +209,7 @@ export function Quiz() {
 
   return (
     <View style={styles.container}>
+      <OverlayFeedback status={1} />
       <Animated.View style={fixedProgressBarStyles}>
         <Text style={styles.title}>
           {quiz.title}
