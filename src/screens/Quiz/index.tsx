@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Alert, Text, View } from 'react-native';
+import { Alert, Text, View, BackHandler } from 'react-native';
 import Animated, {
   Easing,
   Extrapolation,
@@ -225,6 +225,13 @@ export function Quiz() {
       handleNextQuestion();
     }
   }, [points]);
+
+  useEffect(() => {
+    const backHandler = BackHandler
+      .addEventListener('hardwareBackPress', handleStop);
+      
+    return () => backHandler.remove();
+  },[]);
 
   if (isLoading) {
     return <Loading />
