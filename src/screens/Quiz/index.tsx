@@ -14,6 +14,7 @@ import Animated, {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { Audio } from 'expo-av';
+import * as Hastics from 'expo-haptics';
 
 import { QUIZ } from '../../data/quiz';
 import { historyAdd } from '../../storage/quizHistoryStorage';
@@ -101,7 +102,7 @@ export function Quiz() {
 
     if (quiz.questions[currentQuestion].correct === alternativeSelected) {
       await playSound(true);
-      
+
       setPoints(prevState => prevState + 1);
       setStatusReply(1);
       handleNextQuestion();
@@ -130,7 +131,9 @@ export function Quiz() {
     return true;
   }
 
-  function shakeAnimation() {
+  async function shakeAnimation() {
+    await Hastics.notificationAsync(Hastics.NotificationFeedbackType.Error)
+
     shake.value = withSequence(
       withTiming(3, { duration: 400, easing:  Easing.bounce }),
       withTiming(0, undefined, (finished) => {
