@@ -105,7 +105,6 @@ export function Quiz() {
 
       setPoints(prevState => prevState + 1);
       setStatusReply(1);
-      handleNextQuestion();
     } else {
       playSound(false);
       setStatusReply(2);
@@ -229,7 +228,7 @@ export function Quiz() {
   useEffect(() => {
     const backHandler = BackHandler
       .addEventListener('hardwareBackPress', handleStop);
-      
+
     return () => backHandler.remove();
   },[]);
 
