@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { useSharedValue, withTiming } from 'react-native-reanimated';
+import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 import {
   BlurMask,
   Canvas,
+  Circle,
   Path,
   Skia,
 } from '@shopify/react-native-skia';
@@ -21,8 +22,10 @@ const CHECK_STROKE = 2;
 
 export function Option({ checked, title, ...rest }: Props) {
   const percentage = useSharedValue(0);
+  const circle = useSharedValue(0);
 
   const RADIUS = (CHECK_SIZE - CHECK_STROKE) / 2;
+  const CENTER_CIRCLE = RADIUS / 2;
 
   const path = Skia.Path.Make();
   path.addCircle(CHECK_SIZE, CHECK_SIZE, RADIUS);
@@ -30,8 +33,10 @@ export function Option({ checked, title, ...rest }: Props) {
   useEffect(() => {
     if(checked) {
       percentage.value = withTiming(1, { duration: 700});
+      circle.value = withTiming(CENTER_CIRCLE, { easing: Easing.bounce});
     } else {
       percentage.value = withTiming(0, { duration: 700});
+      circle.value = withTiming(0, { duration: 300});
     }
   }, [checked]);
 
@@ -67,6 +72,15 @@ export function Option({ checked, title, ...rest }: Props) {
         >
           <BlurMask blur={1} style="solid" />
         </Path>
+
+        <Circle
+          cx={CHECK_SIZE}
+          cy={CHECK_SIZE}
+          r={circle}
+          color={THEME.COLORS.BRAND_LIGHT}
+        >
+          <BlurMask blur={4} style="solid" />
+        </Circle>
       </Canvas>
     </TouchableOpacity>
   );
