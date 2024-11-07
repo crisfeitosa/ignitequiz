@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { View } from "react-native";
 import TrophySvg from '../../assets/trophy.svg'
 import { Canvas, LinearGradient, Path } from "@shopify/react-native-skia";
-import { Easing, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
+import Animated, { Easing, useSharedValue, withRepeat, withTiming, BounceIn } from "react-native-reanimated";
 import { THEME } from "../../styles/theme";
 import { styles } from './styles';
 
@@ -133,7 +133,9 @@ export function Stars() {
         />
       </Canvas>
 
-      <TrophySvg /> 
+      <Animated.View entering={BounceIn}>
+        <TrophySvg /> 
+      </Animated.View>
     </View>
   )
 };
