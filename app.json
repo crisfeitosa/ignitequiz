@@ -27,7 +27,13 @@
       }
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow ignitequiz to access your microphone."
+        }
+      ]
     ]
   }
 }
