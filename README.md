@@ -14,7 +14,7 @@
   
   <br />
   
-  <img src="https://github.com/crisfeitosa/ignitequiz/assets/Project.png" />
+  <img src="https://github.com/crisfeitosa/ignitequiz/blob/master/assets/Project.png" />
 </div>
 
 ## ✨ Tecnologias relevantes
